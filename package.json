@@ -2,13 +2,13 @@
   "name": "com.tokar.gen.layers",
   "displayName": "Tags Layers Generator",
   "description": "Editor generator unity tags, layers & sorting layers for handy use at runtime.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "tags",
     "layers",
     "sorting layers"
   ],
-  "documentationUrl": "https://docs.google.com/document/d/1c3hoRt2yOY9sczxcSunqeW2DP4GYMIRPxGFwv4RMw54/edit?usp=sharing",
+  "documentationUrl": "https://gitlab.com/o_tokar/unity_tag_layers_gen/-/blob/stable/README.md",
   "author": {
     "name": "o_tokar",
     "email": "#",
