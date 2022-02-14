@@ -2,7 +2,7 @@
   "name": "com.tokar.gen.layers",
   "displayName": "Tags Layers Generator",
   "description": "Editor generator unity tags, layers & sorting layers for handy use at runtime.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "tags",
     "layers",

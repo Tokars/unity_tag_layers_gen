@@ -16,6 +16,8 @@ namespace OT.Gen.Editor
         private static string _comment =
             "// This class is auto-generated, do not modify (use Preferences:TagsLayersGenerator)\n \n";
 
+        static string _tab = "    ";
+
         public static void Run(GenSettings settings, string savePath)
         {
             _namespace = settings.GenNamespace;
@@ -42,7 +44,7 @@ namespace OT.Gen.Editor
         /// <param name="filePath">file path</param>
         private static void GenerateTagsFile(string filePath)
         {
-            string tab = "\t";
+            string tab = _tab;
             StringBuilder sb = new StringBuilder();
 
             sb.Append(_comment);
@@ -50,7 +52,7 @@ namespace OT.Gen.Editor
             {
                 sb.Append("namespace " + $"{_namespace}" + "\n{\n");
                 tab += tab;
-                sb.Append("\tpublic sealed class Tags \n \t{\n");
+                sb.Append(_tab + "public sealed class Tags\n" + _tab + "{\n");
             }
             else
                 sb.Append("public sealed class Tags\n{\n");
@@ -68,7 +70,7 @@ namespace OT.Gen.Editor
             }
 
             if (string.IsNullOrEmpty(_namespace) == false)
-                sb.Append("\t}\n");
+                sb.Append(_tab + "}\n");
             sb.Append("}\n");
             File.WriteAllText(filePath, sb.ToString());
         }
@@ -77,7 +79,7 @@ namespace OT.Gen.Editor
         /// <param name="filePath">file path</param>
         private static void GenerateLayersFile(string filePath)
         {
-            string tab = "\t";
+            string tab = _tab;
             StringBuilder sb = new StringBuilder();
 
             sb.Append(_comment);
@@ -85,10 +87,10 @@ namespace OT.Gen.Editor
             {
                 sb.Append("namespace " + $"{_namespace}" + " \n{\n");
                 tab += tab;
-                sb.Append("\tpublic sealed class Layers \n \t{\n");
+                sb.Append(_tab + "public sealed class Layers\n" + _tab + "{\n");
             }
             else
-                sb.Append("public sealed class Layers \n{\n");
+                sb.Append("public sealed class Layers\n{\n");
 
             var layers = UnityEditorInternal.InternalEditorUtility.layers;
 
@@ -122,7 +124,7 @@ namespace OT.Gen.Editor
             }
 
             if (string.IsNullOrEmpty(_namespace) == false)
-                sb.Append("\t}\n");
+                sb.Append(_tab + "}\n");
             sb.Append("}\n");
             File.WriteAllText(filePath, sb.ToString());
         }
@@ -131,17 +133,17 @@ namespace OT.Gen.Editor
         /// <param name="filePath">file path</param>
         private static void GenerateSortingLayersFile(string filePath)
         {
-            string tab = "\t";
+            string tab = _tab;
             StringBuilder sb = new StringBuilder();
             sb.Append(_comment);
             if (string.IsNullOrEmpty(_namespace) == false)
             {
                 sb.Append("namespace " + $"{_namespace}" + " \n{\n");
                 tab += tab;
-                sb.Append("\tpublic sealed class SortingLayers \n \t{\n");
+                sb.Append(_tab + "public sealed class SortingLayers\n" + _tab + "{\n");
             }
             else
-                sb.Append("public sealed class SortingLayers \n{\n");
+                sb.Append("public sealed class SortingLayers\n{\n");
 
 
             var sortingLayers = SortingLayer.layers;
@@ -164,7 +166,7 @@ namespace OT.Gen.Editor
             }
 
             if (string.IsNullOrEmpty(_namespace) == false)
-                sb.Append("\t}\n");
+                sb.Append(_tab + "}\n");
             sb.Append("}\n");
             File.WriteAllText(filePath, sb.ToString());
         }
