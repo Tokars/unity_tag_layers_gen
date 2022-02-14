@@ -14,5 +14,6 @@
     "email": "#",
     "url": "https://gitlab.com/o_tokar"
   },
-  "type": "editor"
+  "type": "editor",
+  "unity": "2018.3"
 }
