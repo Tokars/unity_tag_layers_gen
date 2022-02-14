@@ -14,7 +14,7 @@ namespace OT.Gen.Editor
         private static string _namespace;
 
         private static string _comment =
-            "// This class is auto-generated, do not modify (use Preferences:TagsLayersGenerator)\n \n";
+            "// This class is auto-generated, do not modify (use Preferences:TagsLayersGenerator)\n\n";
 
         static string _tab = "    ";
 
