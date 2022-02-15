@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 namespace OT.Gen.Editor
 {
@@ -12,6 +13,12 @@ namespace OT.Gen.Editor
         public bool GenSortingLayers = false;
         public string GenPath = string.Empty;
         public string GenNamespace = string.Empty;
+
+        public override string ToString()
+        {
+            return
+                $"{nameof(GenTags)}: {GenTags}, {nameof(GenLayers)}: {GenLayers}, {nameof(GenSortingLayers)}: {GenSortingLayers}, {nameof(GenPath)}: {GenPath}, {nameof(GenNamespace)}: {GenNamespace}";
+        }
     }
 
 
@@ -66,6 +73,7 @@ namespace OT.Gen.Editor
                     if (EditorGUI.EndChangeCheck())
                     {
                         TagLayersGenSettingsHandler.SetEditorSettings(settings);
+                        Debug.Log(settings.ToString());
                     }
                 },
 
