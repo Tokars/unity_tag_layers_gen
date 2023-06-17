@@ -1,7 +1,9 @@
 {
     "name": "com.tokar.gen.layers",
     "rootNamespace": "OT.Gen",
-    "references": [],
+    "references": [
+        "GUID:92f40c52e51e7a545a791eae13ac8389"
+    ],
     "includePlatforms": [
         "Editor"
     ],
