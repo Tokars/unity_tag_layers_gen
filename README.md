@@ -1,4 +1,4 @@
-# Tags Layers SortingLayer: Generator
+# Tags Layers SortingLayer: Generator [![openupm](https://img.shields.io/npm/v/com.tokar.gen.layers?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.tokar.gen.layers/)
 Is a custom `Editor` class-file generator based-on Unity Tags, Layer and SortingLayers built-it engine enums. Generated classes provide at runtime fast access to actual Tag/Layers/SortingLayers constants.
 
 # How to use:

@@ -15,7 +15,7 @@
     "url": ""
   },
   "dependencies": {
-    "tokar.dev.ot_custom_extensions": "0.1.8"
+    "tokar.dev.ot_custom_extensions": "0.1.10"
   },
   "type": "editor",
   "unity": "2018.3"
