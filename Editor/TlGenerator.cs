@@ -22,6 +22,7 @@ namespace OT.Gen.Editor
             Directory.CreateDirectory(createPath);
             return createPath;
         }
+
         public static void GenClass(string path, string nameSpace, string typeName, TlsType type)
         {
             if (TlgSettingsValidator.IsValidNamespace(nameSpace) == false)
@@ -29,6 +30,7 @@ namespace OT.Gen.Editor
                 Debug.LogError("Invalid namespace.");
                 return;
             }
+
             _namespace = nameSpace;
             string validPath = CreateDirectory(path);
             switch (type)
@@ -43,8 +45,8 @@ namespace OT.Gen.Editor
                     GenSortLayersSource(validPath + $"/{typeName}.cs", typeName);
                     break;
             }
+
             AssetDatabase.Refresh();
-            Debug.Log($"Script generated: {path}");
         }
 
         /// <summary> Generation Tags.cs file.</summary>
@@ -53,18 +55,9 @@ namespace OT.Gen.Editor
         private static void GenTagsSource(string filePath, string typeName)
         {
             string tab = Tab;
-            string open = "\n{\n";
             StringBuilder sb = new StringBuilder();
-
             sb.Append(Comment);
-            if (string.IsNullOrEmpty(_namespace) == false)
-            {
-                sb.Append("namespace " + $"{_namespace}{open}");
-                tab += tab;
-                sb.Append(Tab + $"public sealed class {typeName}{Tab + open}");
-            }
-            else
-                sb.Append($"public sealed class {typeName}{Tab + open}");
+            CreateHeader(ref sb, ref tab, typeName);
 
             var srcArr = UnityEditorInternal.InternalEditorUtility.tags;
             var tags = new string[srcArr.Length];
@@ -85,8 +78,19 @@ namespace OT.Gen.Editor
             using StreamWriter swm = File.CreateText(filePath);
             swm.Write(sb.ToString());
             swm.Close();
+        }
 
-            
+        private static void CreateHeader(ref StringBuilder sb, ref string tab, string typeName)
+        {
+            string open = "{\n";
+            if (string.IsNullOrEmpty(_namespace) == false)
+            {
+                sb.Append("namespace " + $"{_namespace}\n{open}");
+                tab += tab;
+                sb.Append(Tab + $"public sealed class {typeName}\n{Tab + open}");
+            }
+            else
+                sb.Append($"public sealed class {typeName} {Tab + open}");
         }
 
         /// <summary> Generation Layers.cs file.</summary>
@@ -95,18 +99,10 @@ namespace OT.Gen.Editor
         private static void GenLayersSource(string filePath, string typeName)
         {
             string tab = Tab;
-            string open = "\n{\n";
             StringBuilder sb = new StringBuilder();
 
             sb.Append(Comment);
-            if (string.IsNullOrEmpty(_namespace) == false)
-            {
-                sb.Append("namespace " + $"{_namespace} {open}");
-                tab += tab;
-                sb.Append(Tab + $"public sealed class {typeName} {Tab + open}");
-            }
-            else
-                sb.Append($"public sealed class {typeName} {Tab + open}");
+            CreateHeader(ref sb, ref tab, typeName);
 
             var layers = UnityEditorInternal.InternalEditorUtility.layers;
 
@@ -152,18 +148,9 @@ namespace OT.Gen.Editor
         private static void GenSortLayersSource(string filePath, string typeName)
         {
             string tab = Tab;
-            string open = "\n{\n";
             StringBuilder sb = new StringBuilder();
             sb.Append(Comment);
-            if (string.IsNullOrEmpty(_namespace) == false)
-            {
-                sb.Append("namespace " + $"{_namespace}{open}");
-                tab += tab;
-                sb.Append(Tab + $"public sealed class {typeName}{Tab + open}");
-            }
-            else
-                sb.Append($"public sealed class {typeName}{Tab + open}");
-
+            CreateHeader(ref sb, ref tab, typeName);
 
             var sortingLayers = SortingLayer.layers;
 
