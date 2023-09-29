@@ -17,10 +17,11 @@ namespace OT.Gen.Editor
 
         private static string CreateDirectory(string path)
         {
-            var res = Extensions.AssetDatabaseUtilities.GetProjectRoot() + "/Assets" + path;
-            return Extensions.AssetDatabaseUtilities.CreateFolder(res);
+            // Debug.Log($"Create dir: {path}");
+            var createPath = Path.Combine(Application.dataPath, path);
+            Directory.CreateDirectory(createPath);
+            return createPath;
         }
-
         public static void GenClass(string path, string nameSpace, string typeName, TlsType type)
         {
             if (TlgSettingsValidator.IsValidNamespace(nameSpace) == false)
@@ -66,7 +67,7 @@ namespace OT.Gen.Editor
                 sb.Append($"public sealed class {typeName}{Tab + open}");
 
             var srcArr = UnityEditorInternal.InternalEditorUtility.tags;
-            var tags = new String[srcArr.Length];
+            var tags = new string[srcArr.Length];
             Array.Copy(srcArr, tags, tags.Length);
             Array.Sort(tags, StringComparer.InvariantCultureIgnoreCase);
 
@@ -83,6 +84,8 @@ namespace OT.Gen.Editor
 
             using StreamWriter swm = File.CreateText(filePath);
             swm.Write(sb.ToString());
+            swm.Close();
+
             
         }
 
